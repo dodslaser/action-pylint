@@ -51,6 +51,13 @@ inputs:
     description: "Additional reviewdog flags"
     required: false
     default: ""
+  execute_command:
+    required: false
+    default: "pylint"
+    description: |
+      pylint execute command.
+      Normally it is "pylint", but for example "poetry run pylint"
+      if you want to run at Poetry without activating the virtual environment.
 runs:
   using: "composite"
   steps:
@@ -68,6 +75,7 @@ runs:
         INPUT_PYLINT_RC: ${{ inputs.pylint_rc }}
         INPUT_PYLINT_ARGS: ${{ inputs.pylint_args }}
         INPUT_GLOB_PATTERN: ${{ inputs.glob_pattern }}
+        INPUT_EXECUTE_COMMAND: ${{ inputs.execute_command }}
 
 # Ref: https://haya14busa.github.io/github-action-brandings/
 branding:
